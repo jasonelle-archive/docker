@@ -1,0 +1,9 @@
+.DS_Store
+app/build
+!app/build/.gitkeep
+jasonette/
+!jasonette/.gitkeep
+.gradle
+app/icons/android/backup
+node_modules
+dist/

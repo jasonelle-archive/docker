@@ -1,0 +1,56 @@
+// This file will override ./jasonette/android/app/build.gradle
+
+buildscript {
+    repositories {
+        maven { url 'https://plugins.gradle.org/m2/' }
+    }
+}
+
+repositories {
+    maven { url 'https://maven.google.com' }
+}
+
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 28
+    buildToolsVersion '28.0.3'
+    defaultConfig {
+        applicationId "com.jasonette"
+        minSdkVersion 22
+        targetSdkVersion 26
+        versionCode 3
+        versionName "0.1.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        multiDexEnabled true
+    }
+    // execute `make ki` first to generate jasonette.keystore
+    // more on https://medium.com/geekculture/react-native-generate-apk-debug-and-release-apk-4e9981a2ea51
+    // https://positive-stud.medium.com/step-by-step-guide-to-generate-a-signed-apk-using-android-studio-1e22ab7b3e86
+    // https://developer.android.com/training/articles/keystore
+    signingConfigs {
+        release {
+            storeFile file('jasonette.keystore') // default: jasonette.keystore
+            storePassword 'your_key_store_password'
+            keyAlias 'your_key_alias' // default: upload
+            keyPassword 'your_key_file_alias_password'
+        }
+    }
+    buildTypes {
+        release {
+            debuggable false
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+
+            // set the signing config for the release apk
+            signingConfig signingConfigs.release
+        }
+    }
+    lintOptions {
+        disable "ResourceType"
+    }
+}
+
+dependencies {
+    // deps
+}

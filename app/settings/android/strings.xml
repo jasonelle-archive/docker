@@ -1,0 +1,6 @@
+<!-- This file will override jasonette/android/app/src/main/res/values/strings.xml -->
+<resources>
+  <string name="app_name">Jasonette</string>
+  <string name="url">file://hello.json</string>
+  <string name="launch">file://preload.json</string>
+</resources>
